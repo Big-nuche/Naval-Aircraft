@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Naval Aircraft</title>
+</head>
+<body class="body">
+    <div>
+        <div class="topnav">
+            <a class="active" href="Naval Aircraft">Naval Aircraft</a>
+            <a href="aircraft">Aircraft</a>
+            <a href="#news">News</a>
+            <a href="contact.html">Contact</a>
+            <a href="https://www.google.com/" target="_blank">Check Out Google</a>
+        </div>
+    </div>
+    <div class="pl-20">
+        <h1 class="heading">Naval Aircraft</h1>
+        <div>
+            <p>Welcome to Big-Nuches nerdgasm, Check out some of these Planes!</p>
+        </div>
+        <div>
+            <input type="text" id="search" name="search" value="F-8">
+        </div>
+    </div>
+
+    <div id="list" class="card-container"></div>
+
+    <script>
+        const input = document.getElementById('search');
+        input.addEventListener('input', updatevalue);
+
+        function updatevalue(e) {
+            const fiteredAircrafts = aircrafts.filter(aircraft => {
+                return ((aircraft.name.includes(e.target.value)) || (aircraft.designation.includes(e.target.value)))
+            })
+            buildCards(fiteredAircrafts);
+        };
+
+        function buildCards(aircrafts) {
+            const container = document.getElementById('list');
+            //Clears out any cards that already exists
+            container.innerHTML = "";
+
+            //Loops over all the aircraft and build the card for each aircraft
+            aircrafts.forEach(aircraft => {
+                const content = `
+                    <a href="${aircraft.details_link}" class="card">
+                        <img class="card-image" src="${aircraft.image}" alt=""> 
+                        <div class="card-heading">${aircraft.designation}</div>
+                        <div class="card-sub-heading">
+                            ${aircraft.name}
+                        </div>
+                        <div class="card-description">
+                            ${aircraft.description}
+                        </div>
+                    </a>
+                `
+                //Appends the card to the innerHTML of the container
+                container.innerHTML = container.innerHTML + content;
+            });
+        };
+
+        const aircrafts = [
+            {
+                "designation": "E-2",
+                "name": "Hawkeye",
+                "description": "The E-2 Hawkeye was the Navy's first dedicated airborne early warning aircraft, bringing the ability to coordinate intercepts of aircraft, ships, submarines, or multi-aircraft operations.",
+                "image": "https://1.bp.blogspot.com/-W2Z_MF0s5jg/YHu7pZm48nI/AAAAAAAABgI/6ZrdoHpP2TcuozRh3SewSKj1nCjmSDGyACLcBGAsYHQ/s1040/Grumman%2BE-2%2BHawkeye.JPG",
+                "details_link": "aircraft/e-2.html"
+            },
+            {
+                "designation": "A-3",
+                "name": "Skywarrior",
+                "description": " The A-3 SkyWarrior was intially desgined as a medium bomber but was quickly outpaced in the role by other aircraft, finding a better role as a tanker, and electronic support aircraft.",
+                "image": "https://aerocorner.com/wp-content/uploads/2020/08/Douglas-A3D-2-KA-3B-Skywarrior-of-the-Aerial-Refueling-Squadron-208.jpg",
+                "details_link": "aircraft/a-3.html"
+            },
+            {
+                "designation": "A-7",
+                "name": "Corsair II",
+                "description": "The A-7 was designed as a light attack aircraft replacement for the A-4, boasting a larger payload and mix of ordanance, as well as a precise new bombing computer and Heads Up Display.",
+                "image": "https://cdn10.picryl.com/photo/1980/01/01/an-a-7-corsair-ii-attack-aircraft-is-prepared-for-launch-aboard-the-aircraft-f4c017-1600.jpg",
+                "details_link": ""
+            },
+            {
+                "designation": "A-6",
+                "name": "Intruder",
+                "description": "The A-6 Intruder was the Navy's first all weather attack aircraft, with advanced avionics/radar equimpment it would often perform many of its missions at night, alone, and at low level.",
+                "image": "https://theaviationgeekclub.com/wp-content/uploads/2018/03/Crew.jpg",
+                "details_link": ""
+            },
+            {
+                "designation": "F-4",
+                "name": "Phantom",
+                "description": "The F-4 Phantom was a twin engined fleet defense and interceptor fighter, carrying only missiles and no gun/s for secondary armament.",
+                "image": "https://theaviationgeekclub.com/wp-content/uploads/2018/07/F-4-Phinal-Launch.jpeg",
+                "details_link": ""
+            },
+            {
+                "designation": "F-8",
+                "name": "Crusader",
+                "description": "The F-8 Crusader was a daytime fighter, designed as an air superiority fighter was the last of its time (initially) to have guns as its primary armament.",
+                "image": "https://263i3m2dw9nnf6zqv39ktpr1-wpengine.netdna-ssl.com/wp-content/uploads/2017/08/F8-open-960x640-1200x0-c-default.jpg",
+                "details_link": ""
+            },
+            {
+                "designation": "RA-5C",
+                "name": "Vigilante",
+                "description": "The RA-5C Vigilante was a large twin engined re-purposed high-altitude nuclear bomber turned Reconnaissance aircraft.",
+                "image": "https://theaviationgeekclub.com/wp-content/uploads/2017/11/RA-5C.jpg",
+                "details_link": "aircraft/ra-5c.html"
+            },
+            {
+                "designation": "A-4",
+                "name": "Skyhawk",
+                "description": "The A-4 Skyhawk was a small nuclear capable Naval strike Aircraft, capable of carrying considerable ordanance loads for its size.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Douglas_A-4F_Skyhawks_aboard_USS_Hancock_%28CVA-19%29_on_25_May_1972_%286430106%29.jpg/1024px-Douglas_A-4F_Skyhawks_aboard_USS_Hancock_%28CVA-19%29_on_25_May_1972_%286430106%29.jpg",
+                "details_link": ""
+            }
+        ];
+
+        // Build all the cards when the page loads
+        buildCards(aircrafts);
+    </script>
+</body>
+</html>
